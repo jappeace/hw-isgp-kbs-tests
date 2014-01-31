@@ -10,8 +10,8 @@
 namespace isgp {
 	class Point {
 	private:
-		double x;
-		double y;
+		double _x;
+		double _y;
 	};
 }
 #endif	/* POINT_H */

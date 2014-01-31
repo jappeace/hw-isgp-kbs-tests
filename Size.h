@@ -10,8 +10,8 @@
 namespace isgp {
 	class Size {
 	private:
-		double width;
-		double height;
+		int _width;
+		int _height;
 	};
 }
 #endif	/* SIZE_H */

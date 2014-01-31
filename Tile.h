@@ -20,10 +20,10 @@ namespace isgp {
 		void SetTop(Tile* top);
 		Tile* GetTop() const;
 	private:
-		Tile* top;
-		Tile* left;
-		Tile* right;
-		Tile* bottom;
+		Tile* _top;
+		Tile* _left;
+		Tile* _right;
+		Tile* _bottom;
 	};
 }
 #endif	/* TILE_H */

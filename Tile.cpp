@@ -1,33 +1,33 @@
 #include "Tile.h"
 using namespace isgp;
 void Tile::SetBottom(Tile* bottom) {
-	this->bottom = bottom;
+	this->_bottom = bottom;
 }
 
 Tile* Tile::GetBottom() const {
-	return bottom;
+	return _bottom;
 }
 
 void Tile::SetRight(Tile* right) {
-	this->right = right;
+	this->_right = right;
 }
 
 Tile* Tile::GetRight() const {
-	return right;
+	return _right;
 }
 
 void Tile::SetLeft(Tile* left) {
-	this->left = left;
+	this->_left = left;
 }
 
 Tile* Tile::GetLeft() const {
-	return left;
+	return _left;
 }
 
 void Tile::SetTop(Tile* top) {
-	this->top = top;
+	this->_top = top;
 }
 
 Tile* Tile::GetTop() const {
-	return top;
+	return _top;
 }
