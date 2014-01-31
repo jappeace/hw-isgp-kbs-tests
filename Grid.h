@@ -22,13 +22,47 @@ namespace isgp {
 	private:
 		unordered_map<int, unordered_map<int, Tile>*>* _tiles;
 		static Size const * const C_default_size = new Size(20, 20);
+		/**
+		 * size of the grid
+		 */
 		Size* _size;
+		/**
+		 * final step in the traversal proces, here the cordinates are known and only the
+		 * functionpointer has to be called
+		 * */
+		void traverse(int x, int y, void (with*)(&Tile,&Point));
 	public:
+
+		/** default constructor will use the C_default_size for initiliztion */
 		Grid();
-		~Grid();
+		/** initialize the grid to the specified size*/
 		Grid(int width, int height);
+		/**
+		 * destructor
+		 */
+		~Grid();
+
+		/**
+		 * retrieve tile at postiotion
+		 */
 		Tile getTileAt(int x, int y);
-		Tile getTileAt(Point p);
+		/**
+		 * shorthand for getTileAt(int x, int y)
+		 */
+		Tile getTileAt(&Point p);
+
+		/**
+		 * The given function pointer will receive all the tiles and coordinates in the specified row
+		 */
+		void traverseRow(int y, void (with*)(&Tile,&Point));
+		/**
+		 * The given function pointer will receive all the tiles and coordinates in the specified collumn
+		 */
+		void traverseCollumn(int x, void (with*)(&Tile,&Point));
+		/**
+		 * The given function pointer will receive all the tiles in the grid and the cordiantes of them.
+		 */
+		void traverseTiles(void (with*)(&Tile,&Point));
 	};
 }
 
