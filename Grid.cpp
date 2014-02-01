@@ -15,7 +15,7 @@ void Grid::init(int width, int height){
 	// initilize tiles
 	for(int x = 0; x < height; x++){
 		for(int y = 0; y < width; y++){
-			_tiles->assign(getTileIndex(x, y), new Tile());
+			_tiles->assign(getTileIndex(x, y), new Tile(x, y));
 		}
 	}
 	

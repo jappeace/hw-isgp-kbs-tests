@@ -1,5 +1,14 @@
 #include "Tile.h"
 using namespace isgp;
+Tile::Tile(Point* p){
+	init(p);
+}
+Tile::Tile(int x, int y){
+	init(new Point(x, y));
+}
+Tile::init(Point* p){
+	_position = p;
+}
 void Tile::SetBottom(Tile* bottom) {
 	this->_bottom = bottom;
 }

@@ -7,10 +7,12 @@
 
 #ifndef TILE_H
 #define	TILE_H
-
+#include "Point.h"
 namespace isgp {
 	class Tile {
 	public:
+		Tile(Point* p);
+		Tile(int x, int y);
 		void SetBottom(Tile* bottom);
 		Tile* GetBottom() const;
 		void SetRight(Tile* right);
@@ -20,6 +22,8 @@ namespace isgp {
 		void SetTop(Tile* top);
 		Tile* GetTop() const;
 	private:
+		void init(Point* p);
+		Point* _position;
 		Tile* _top;
 		Tile* _left;
 		Tile* _right;
