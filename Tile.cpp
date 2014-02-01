@@ -6,7 +6,7 @@ Tile::Tile(Point* p){
 Tile::Tile(int x, int y){
 	init(new Point(x, y));
 }
-Tile::init(Point* p){
+void Tile::init(Point* p){
 	_position = p;
 }
 void Tile::SetBottom(Tile* bottom) {
