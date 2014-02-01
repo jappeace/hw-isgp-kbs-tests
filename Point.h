@@ -9,11 +9,11 @@
 #define	POINT_H
 namespace isgp {
 	class Point {
-
-    void SetY(double _y);
-    double GetY() const;
-    void SetX(double _x);
-    double GetX() const;
+	public:
+		void SetY(double _y);
+		double GetY() const;
+		void SetX(double _x);
+		double GetX() const;
 	
 	private:
 		double _x;
