@@ -9,9 +9,9 @@
 #define	GRIDTESTCLASS_H
 
 #include <cppunit/extensions/HelperMacros.h>
-#include "Grid.h"
-#include "Tile.h"
-#include "IGridTraveller.h"
+#include "../Grid.h"
+#include "../Tile.h"
+#include "../IGridTraveller.h"
 using namespace isgp;
 class gridTestClass : public CPPUNIT_NS::TestFixture {
 	

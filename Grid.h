@@ -8,7 +8,8 @@
 #ifndef GRID_H
 #define	GRID_H
 
-#include <unordered_map>
+#include <vector>
+#include <sstream>
 #include "Tile.h"
 #include "Size.h"
 #include "Point.h"
@@ -21,9 +22,10 @@ namespace isgp {
 	 */
 	class Grid{
 	private:
-		Tile* _tiles[];
+		vector<Tile*>* _tiles;
 		int _tilesLength;
-		Size const * const C_default_size = new Size(20, 20);
+		static const int C_default_h = 20;
+		static const int C_default_w = 20;
 		/**
 		 * size of the grid
 		 */
@@ -32,7 +34,7 @@ namespace isgp {
 		 * final step in the traversal proces, here the cordinates are known and only the
 		 * functionpointer has to be called
 		 * */
-		void traverse(int x, int y, IGridTraveller& travellar);
+		void traverse(int x, int y, IGridTraveller* travellar);
 
 		/**
 		 * comman code for both contructors
