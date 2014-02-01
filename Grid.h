@@ -9,11 +9,12 @@
 #define	GRID_H
 
 #include <vector>
-#include <sstream>
 #include "Tile.h"
 #include "Size.h"
 #include "Point.h"
 #include "IGridTraveller.h"
+#include <iostream>
+#include "StrConverter.h"
 using namespace std;
 namespace isgp {
 	/**

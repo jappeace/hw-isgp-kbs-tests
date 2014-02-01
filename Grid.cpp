@@ -1,4 +1,5 @@
 #include "Grid.h"
+
 using namespace isgp;
 void Grid::traverse(int x, int y, IGridTraveller* traveller){
 	traveller->receiveTile(getTileAt(x, y), new Point(x, y));
@@ -8,7 +9,7 @@ int Grid::getTileIndex(int x, int y){
 }
 void Grid::init(int width, int height){
 	_size = new Size(width, height);
-	_tilesLength = width*height-1;
+	_tilesLength = (int)(width*height-1); // minus one cause array starts with 0
 	_tiles = new vector<Tile*>();
 	
 	for(int x = 0; x < height; x++){
@@ -18,6 +19,11 @@ void Grid::init(int width, int height){
 	}
 	for(int x = 0; x < height; x++){
 		for(int y = 0; y < width; y++){
+			std::cout << "filling" 
+					<< " x:" << StrConverter::intToString(x) 
+					<< " y:" << StrConverter::intToString(y) 
+					<< std::endl;
+			
 			_tiles->at(getTileIndex(x, y))->SetTop(
 				_tiles->at(
 					getTileIndex(x,(y + 1) % height)
@@ -55,22 +61,14 @@ Grid::~Grid(){
 	delete _tiles;
 	delete _size;
 }
-/**
- * its kind of hard to go from int to string
- * @param num
- * @return 
- */
-string intToString(int num){
-	ostringstream stream;
-	string result = "";
-	stream << num;
-	return stream.str();
-}
+
 void sizeMessage(int x, int y){
 	
 	// I used to just log this, but usualy when this happens the aplication crashed anyways,
 	// so this will do fine
-	throw "Unable to find tile at x: " + intToString(x) + " y: " + intToString(y) ;
+	throw "Unable to find tile at "
+			  "x: " + StrConverter::intToString(x) 
+			+ "y: " + StrConverter::intToString(y) ;
 };
 
 Tile* Grid::getTileAt(int x, int y){
