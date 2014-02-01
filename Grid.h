@@ -18,8 +18,10 @@
 using namespace std;
 namespace isgp {
 	/**
-	 * A class for easaly handaling a grid as a one dimensional array, with O(1) acces speed,
-	 * it also handy for traversel of indivdual rows/columns or all tiles trough function pointers
+	 * A class for easaly handaling a grid as a one dimensional array, with O(1) accessing speed for positions,
+	 * and O(N), for accesing any set of elements.
+	 * it also handy for traversel of indivdual rows/columns or all tiles trough passing an object
+	 * which inherits from the interface like IGridTraveller
 	 */
 	class Grid{
 	private:

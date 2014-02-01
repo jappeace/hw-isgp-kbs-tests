@@ -9,44 +9,54 @@ int Grid::getTileIndex(int x, int y){
 }
 void Grid::init(int width, int height){
 	_size = new Size(width, height);
-	_tilesLength = (int)(width*height-1); // minus one cause array starts with 0
+	_tilesLength = (int)(width*height);
 	_tiles = new vector<Tile*>();
 	
+	// initilize tiles
 	for(int x = 0; x < height; x++){
 		for(int y = 0; y < width; y++){
 			_tiles->assign(getTileIndex(x, y), new Tile());
 		}
 	}
+	
+	// bind tiles to each other
 	for(int x = 0; x < height; x++){
 		for(int y = 0; y < width; y++){
-			std::cout << "filling" 
+			std::cout << "binding" 
 					<< " x:" << StrConverter::intToString(x) 
 					<< " y:" << StrConverter::intToString(y) 
 					<< std::endl;
+			if(y != height -1 ){
+				_tiles->at(getTileIndex(x, y))->SetTop(
+					_tiles->at(
+						getTileIndex(x,y +1)
+					)
+				);
+			}
 			
-			_tiles->at(getTileIndex(x, y))->SetTop(
-				_tiles->at(
-					getTileIndex(x,(y + 1) % height)
-				)
-			);
+			if(y != 0){
+				_tiles->at(getTileIndex(x, y))->SetBottom(
+					_tiles->at(
+						getTileIndex(x, y -1)
+					)
+				);
+			}
 			
-			_tiles->at(getTileIndex(x, y))->SetBottom(
-				_tiles->at(
-					getTileIndex(x, (y - 1 + height) % height)
-				)
-			);
-			
-			_tiles->at(getTileIndex(x, y))->SetLeft(
-				_tiles->at(
-					getTileIndex((x - 1 + width) % width, y)
-				)
-			);
-			
-			_tiles->at(getTileIndex(x, y))->SetRight(
-				_tiles->at(
-					getTileIndex((x + 1) % width, y)
-				)
-			);
+			if(x != width -1){
+				_tiles->at(getTileIndex(x, y))->SetRight(
+					_tiles->at(
+						getTileIndex(x + 1, y)
+					)
+				);
+			}
+				
+			if(x != 0){
+				_tiles->at(getTileIndex(x, y))->SetLeft(
+					_tiles->at(
+						getTileIndex(x - 1, y)
+					)
+				);
+			}
 			
 		}
 	}
