@@ -1,6 +1,9 @@
 #include "Point.h"
 using namespace isgp;
-
+Point::Point(int x, int y){
+	_x = x;
+	_y = y;
+}
 void Point::SetY(double _y) {
 	this->_y = _y;
 }

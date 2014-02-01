@@ -10,6 +10,7 @@
 namespace isgp {
 	class Point {
 	public:
+		Point(int x, int y);
 		void SetY(double _y);
 		double GetY() const;
 		void SetX(double _x);

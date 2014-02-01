@@ -21,7 +21,8 @@ namespace isgp {
 	 */
 	class Grid{
 	private:
-		unordered_map<int, unordered_map<int, Tile*>>* _tiles;
+		Tile* _tiles[];
+		int _tilesLength;
 		Size const * const C_default_size = new Size(20, 20);
 		/**
 		 * size of the grid
@@ -37,6 +38,13 @@ namespace isgp {
 		 * comman code for both contructors
 		 */
 		void init(int width, int height);
+		/**
+		 * this function prevents the same calculation showing up in several places
+         * @param x
+         * @param y
+         * @return the index
+         */
+		int getTileIndex(int x, int y);
 	public:
 
 		/** default constructor will use the C_default_size for initiliztion */
@@ -60,15 +68,15 @@ namespace isgp {
 		/**
 		 * The given function pointer will receive all the tiles and coordinates in the specified row
 		 */
-		void traverseRow(int y, IGridTraveller& travellar);
+		void traverseRow(int y, IGridTraveller* travellar);
 		/**
 		 * The given function pointer will receive all the tiles and coordinates in the specified collumn
 		 */
-		void traverseCollumn(int x, IGridTraveller& travellar);
+		void traverseCollumn(int x, IGridTraveller* travellar);
 		/**
 		 * The given function pointer will receive all the tiles in the grid and the cordiantes of them.
 		 */
-		void traverseTiles(IGridTraveller& travellar);
+		void traverseTiles(IGridTraveller* travellar);
         Size* getSize() const;
 	};
 }
