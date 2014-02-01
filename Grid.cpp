@@ -37,11 +37,21 @@ Tile* Grid::getTileAt(int x, int y){
 	return _tiles[x][y];
 }
 Tile* Grid::getTileAt(Point& p){
+	return getTileAt(p.GetX(), p.GetY());
 }
 
 void Grid::traverseRow(int y, IGridTraveller& traveller){
+	for(int x = 0; x < _size->GetWidth(); x++){
+		traveller.receiveTile(_tiles[x][y], new Point(x, y));
+	}
 }
 void Grid::traverseCollumn(int x, IGridTraveller& traveller){
+	for(int y = 0; y < _size->GetHeight(); y++){
+		traveller.receiveTile(_tiles[x][y], new Point(x, y));
+	}
 }
 void Grid::traverseTiles(IGridTraveller& traveller){
+	for(int x = 0; x < _size->GetWidth(); x++){
+		traverseCollumn(x, travveler);
+	}
 }
