@@ -14,11 +14,11 @@ void Grid::init(int width, int height){
 	
 	// initilize tiles
 	for(int x = 0; x < height; x++){
-		for(int y = 0; y < width; y++){
+		for(int y = 0; y < width ; y++){
 			_tiles->assign(getTileIndex(x, y), new Tile(x, y));
 		}
 	}
-	
+	std::cout << std::endl << "nr: " << StrConverter::intToString(_tiles->size()) << std::endl;
 	// bind tiles to each other
 	for(int x = 0; x < height; x++){
 		for(int y = 0; y < width; y++){
