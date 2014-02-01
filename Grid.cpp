@@ -55,3 +55,7 @@ void Grid::traverseTiles(IGridTraveller& traveller){
 		traverseCollumn(x, travveler);
 	}
 }
+
+Size* Grid::getSize() const {
+	return _size;
+}

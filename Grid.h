@@ -69,6 +69,7 @@ namespace isgp {
 		 * The given function pointer will receive all the tiles in the grid and the cordiantes of them.
 		 */
 		void traverseTiles(IGridTraveller& travellar);
+        Size* getSize() const;
 	};
 }
 
