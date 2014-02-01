@@ -11,12 +11,15 @@
 #include <cppunit/extensions/HelperMacros.h>
 #include "Grid.h"
 #include "Tile.h"
+#include "IGridTraveller.h"
+using namespace isgp;
 class gridTestClass : public CPPUNIT_NS::TestFixture {
+	
 	CPPUNIT_TEST_SUITE(gridTestClass);
 
 	CPPUNIT_TEST(testGrid);
-	CPPUNIT_TEST(testGetTileAt);
-	CPPUNIT_TEST(testGetTileAt2);
+	CPPUNIT_TEST(testGetTileAt_XY);
+	CPPUNIT_TEST(testGetTileAtPoint);
 	CPPUNIT_TEST(testTraverseCollumn);
 	CPPUNIT_TEST(testTraverseRow);
 	CPPUNIT_TEST(testTraverseTiles);
@@ -30,12 +33,15 @@ public:
 	void tearDown();
 
 private:
+	Grid* test_grid;
 	void testGrid();
-	void testGetTileAt();
-	void testGetTileAt2();
+	void testGetTileAt_XY();
+	void testGetTileAtPoint();
 	void testTraverseCollumn();
 	void testTraverseRow();
 	void testTraverseTiles();
+	
+	private void testTile(int x, int y);
 
 };
 
