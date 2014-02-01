@@ -41,7 +41,7 @@ private:
 	void testTraverseRow();
 	void testTraverseTiles();
 	
-	private void testTile(int x, int y);
+	void testTile(int x, int y);
 
 };
 

@@ -17,11 +17,11 @@ gridTestClass::~gridTestClass() {
 }
 void gridTestClass::testTile(int x, int y){
 	Tile* result = test_grid->getTileAt(x, y);
-	CPPUNIT_ASSERT((*result) != NULL);
-	CPPUNIT_ASSERT(result->GetBottom()	== *test_grid->getTileAt(x, y-1));
-	CPPUNIT_ASSERT(result->GetLeft()	== *test_grid->getTileAt(x-1, y));
-	CPPUNIT_ASSERT(result->GetTop()		== *test_grid->getTileAt(x, y+1));
-	CPPUNIT_ASSERT(result->GetRight()	== *test_grid->getTileAt(x+1, y));
+	CPPUNIT_ASSERT(result != NULL);
+	CPPUNIT_ASSERT(result->GetBottom()	== test_grid->getTileAt(x, y-1));
+	CPPUNIT_ASSERT(result->GetLeft()	== test_grid->getTileAt(x-1, y));
+	CPPUNIT_ASSERT(result->GetTop()		== test_grid->getTileAt(x, y+1));
+	CPPUNIT_ASSERT(result->GetRight()	== test_grid->getTileAt(x+1, y));
 }
 void gridTestClass::setUp() {
 	test_grid = new Grid(20, 20);
