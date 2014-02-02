@@ -26,7 +26,7 @@ void Grid::init(int width, int height){
 					<< " x:" << StrConverter::intToString(x) 
 					<< " y:" << StrConverter::intToString(y) 
 					<< std::endl;
-			if(y != height -1 ){
+			if(y < height -2 ){
 				_tiles->at(getTileIndex(x, y))->SetTop(
 					_tiles->at(
 						getTileIndex(x,y +1)
@@ -42,7 +42,7 @@ void Grid::init(int width, int height){
 				);
 			}
 			
-			if(x != width -1){
+			if(x < width -2){
 				_tiles->at(getTileIndex(x, y))->SetRight(
 					_tiles->at(
 						getTileIndex(x + 1, y)
