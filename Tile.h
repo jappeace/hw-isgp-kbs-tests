@@ -21,7 +21,6 @@ namespace isgp {
 		Tile* GetLeft() const;
 		void SetTop(Tile* top);
 		Tile* GetTop() const;
-        void SetPosition(Point* _position);
         Point* GetPosition() const;
 	private:
 		void init(Point* p);
