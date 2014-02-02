@@ -22,6 +22,13 @@ void gridTestClass::testTile(int x, int y){
 	CPPUNIT_ASSERT(result->GetLeft()	== test_grid->getTileAt(x-1, y));
 	CPPUNIT_ASSERT(result->GetTop()		== test_grid->getTileAt(x, y+1));
 	CPPUNIT_ASSERT(result->GetRight()	== test_grid->getTileAt(x+1, y));
+	
+	// the debuger shows somtimes that the pointers are the same, which should not *ever* happen
+	// in a grid, these cases test for this behavior
+	CPPUNIT_ASSERT(result->GetBottom()	!= result);
+	CPPUNIT_ASSERT(result->GetLeft()	!= result);
+	CPPUNIT_ASSERT(result->GetTop()		!= result);
+	CPPUNIT_ASSERT(result->GetRight()	!= result);
 }
 void gridTestClass::setUp() {
 	test_grid = new Grid(20, 20);
