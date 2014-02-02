@@ -31,8 +31,25 @@ void gridTestClass::tearDown() {
 }
 
 void gridTestClass::testGrid() {
+	// test uneven grids
 	int width = 10;
 	int height = 13;
+	Grid* g = new Grid(width, height);
+	
+	CPPUNIT_ASSERT(g->getSize()->GetHeight() == height);
+	CPPUNIT_ASSERT(g->getSize()->GetWidth() == width);
+
+	// what to do with a negative
+	width = -10;
+	height = 13;
+	Grid* g = new Grid(width, height);
+	
+	CPPUNIT_ASSERT(g->getSize()->GetHeight() == height);
+	CPPUNIT_ASSERT(g->getSize()->GetWidth() == width);
+	
+	// what to do with 2 negatives
+	width = -10;
+	height = -13;
 	Grid* g = new Grid(width, height);
 	
 	CPPUNIT_ASSERT(g->getSize()->GetHeight() == height);
