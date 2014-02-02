@@ -15,11 +15,23 @@ namespace isgp {
 		double GetY() const;
 		void SetX(double _x);
 		double GetX() const;
-	
+
 	private:
 		double _x;
 		double _y;
 	};
+
+	inline bool operator==(const Point& l, const Point& r){
+		return l.GetX() == r.GetX() && l.GetY() == r.GetY();
+	}
+	inline bool operator< (const Point& l, const Point& r){
+		return l.GetX() * l.GetY() < r.GetX() * r.GetY();
+	}
+	// forward operations to the once that actualy do somthing
+	inline bool operator!=(const Point& l, const Point& r){return !operator==(l,r);}
+	inline bool operator> (const Point& l, const Point& r){return  operator< (r,l);}
+	inline bool operator<=(const Point& l, const Point& r){return !operator> (l,r);}
+	inline bool operator>=(const Point& l, const Point& r){return !operator< (l,r);}
 }
 #endif	/* POINT_H */
 

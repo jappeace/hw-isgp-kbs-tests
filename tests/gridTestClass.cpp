@@ -18,6 +18,8 @@ gridTestClass::~gridTestClass() {
 void gridTestClass::testTile(int x, int y){
 	Tile* result = test_grid->getTileAt(x, y);
 	CPPUNIT_ASSERT(result != NULL);
+	CPPUNIT_ASSERT(*result->GetPosition() == *new Point(x, y)); // check if it is set at the proper location
+	
 	CPPUNIT_ASSERT(result->GetBottom()	== test_grid->getTileAt(x, y-1));
 	CPPUNIT_ASSERT(result->GetLeft()	== test_grid->getTileAt(x-1, y));
 	CPPUNIT_ASSERT(result->GetTop()		== test_grid->getTileAt(x, y+1));
@@ -29,6 +31,8 @@ void gridTestClass::testTile(int x, int y){
 	CPPUNIT_ASSERT(result->GetLeft()	!= result);
 	CPPUNIT_ASSERT(result->GetTop()		!= result);
 	CPPUNIT_ASSERT(result->GetRight()	!= result);
+	
+	
 }
 void gridTestClass::setUp() {
 	test_grid = new Grid(20, 20);
