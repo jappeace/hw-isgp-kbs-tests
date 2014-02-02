@@ -26,9 +26,9 @@ namespace isgp {
 	class Grid{
 	private:
 		vector<Tile*>* _tiles;
-		int _tilesLength;
-		static const int C_default_h = 20;
-		static const int C_default_w = 20;
+		unsigned _tilesLength;
+		static const unsigned C_default_h = 20;
+		static const unsigned C_default_w = 20;
 		/**
 		 * size of the grid
 		 */
@@ -37,25 +37,25 @@ namespace isgp {
 		 * final step in the traversal proces, here the cordinates are known and only the
 		 * functionpointer has to be called
 		 * */
-		void traverse(int x, int y, IGridTraveller* travellar);
+		void traverse(unsigned x, unsigned y, IGridTraveller* travellar);
 
 		/**
 		 * comman code for both contructors
 		 */
-		void init(int width, int height);
+		void init(unsigned width, unsigned height);
 		/**
 		 * this function prevents the same calculation showing up in several places
          * @param x
          * @param y
          * @return the index
          */
-		int getTileIndex(int x, int y);
+		unsigned getTileIndex(unsigned x, unsigned y);
 	public:
 
 		/** default constructor will use the C_default_size for initiliztion */
 		Grid();
 		/** initialize the grid to the specified size*/
-		Grid(int width, int height);
+		Grid(unsigned width, unsigned height);
 		/**
 		 * destructor
 		 */
@@ -64,7 +64,7 @@ namespace isgp {
 		/**
 		 * retrieve tile at postiotion
 		 */
-		Tile* getTileAt(int x, int y);
+		Tile* getTileAt(unsigned x, unsigned y);
 		/**
 		 * shorthand for getTileAt(int x, int y)
 		 */
@@ -73,11 +73,11 @@ namespace isgp {
 		/**
 		 * The given function pointer will receive all the tiles and coordinates in the specified row
 		 */
-		void traverseRow(int y, IGridTraveller* travellar);
+		void traverseRow(unsigned y, IGridTraveller* travellar);
 		/**
 		 * The given function pointer will receive all the tiles and coordinates in the specified collumn
 		 */
-		void traverseCollumn(int x, IGridTraveller* travellar);
+		void traverseCollumn(unsigned x, IGridTraveller* travellar);
 		/**
 		 * The given function pointer will receive all the tiles in the grid and the cordiantes of them.
 		 */
