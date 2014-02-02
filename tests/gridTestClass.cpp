@@ -35,7 +35,6 @@ void gridTestClass::testGrid() {
 	int width = 10;
 	int height = 13;
 	Grid* g = new Grid(width, height);
-	
 	CPPUNIT_ASSERT(g->getSize()->GetHeight() == height);
 	CPPUNIT_ASSERT(g->getSize()->GetWidth() == width);
 
@@ -69,31 +68,28 @@ void gridTestClass::testGetTileAtPoint() {
 }
 
 void gridTestClass::testTraverseCollumn() {
+	CPPUNIT_ASSERT(false);
+	return;
 	int x;
 	IGridTraveller* travellar;
 	isgp::Grid grid;
 	grid.traverseCollumn(x, travellar);
-	if (true /*check result*/) {
-		CPPUNIT_ASSERT(false);
-	}
 }
 
 void gridTestClass::testTraverseRow() {
+	CPPUNIT_ASSERT(false);
+	return;
 	int y;
 	IGridTraveller* travellar;
 	isgp::Grid grid;
 	grid.traverseRow(y, travellar);
-	if (true /*check result*/) {
-		CPPUNIT_ASSERT(false);
-	}
 }
 
 void gridTestClass::testTraverseTiles() {
+	CPPUNIT_ASSERT(false);
+	return;
 	IGridTraveller* travellar;
 	isgp::Grid grid;
 	grid.traverseTiles(travellar);
-	if (true /*check result*/) {
-		CPPUNIT_ASSERT(false);
-	}
 }
 
