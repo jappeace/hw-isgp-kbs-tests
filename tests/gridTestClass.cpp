@@ -6,7 +6,7 @@
  */
 
 #include "gridTestClass.h"
-
+using namespace isgp;
 namespace isgp_test {
 	CPPUNIT_TEST_SUITE_REGISTRATION(gridTestClass);
 
@@ -44,7 +44,7 @@ namespace isgp_test {
 	}
 
 	void gridTestClass::setUp() {
-		test_grid = new Grid(20, 20);
+		test_grid = new Grid(TEST_GRID_X, TEST_GRID_Y);
 	}
 
 	void gridTestClass::tearDown() {
@@ -94,28 +94,22 @@ namespace isgp_test {
 	}
 
 	void gridTestClass::testTraverseCollumn() {
-		CPPUNIT_ASSERT(false);
-		return;
-		int x;
-		IGridTraveller* travellar;
-		isgp::Grid grid;
-		grid.traverseCollumn(x, travellar);
+		int x = 5;
+		GridTravellerMock* travellar =  new GridTravellerMock();
+		test_grid->traverseCollumn(x, travellar);
+		CPPUNIT_ASSERT(travellar->nrCalled == TEST_GRID_Y);
 	}
 
 	void gridTestClass::testTraverseRow() {
-		CPPUNIT_ASSERT(false);
-		return;
-		int y;
-		IGridTraveller* travellar;
-		isgp::Grid grid;
-		grid.traverseRow(y, travellar);
+		int y = 8;
+		GridTravellerMock* travellar =  new GridTravellerMock();
+		test_grid->traverseRow(y, travellar);
+		CPPUNIT_ASSERT(travellar->nrCalled == TEST_GRID_X);
 	}
 
 	void gridTestClass::testTraverseTiles() {
-		CPPUNIT_ASSERT(false);
-		return;
-		IGridTraveller* travellar;
-		isgp::Grid grid;
-		grid.traverseTiles(travellar);
+		GridTravellerMock* travellar =  new GridTravellerMock();
+		test_grid->traverseTiles(travellar);
+		CPPUNIT_ASSERT(travellar->nrCalled == TEST_GRID_X * TEST_GRID_Y);
 	}
 }

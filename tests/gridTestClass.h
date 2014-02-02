@@ -7,12 +7,16 @@
 
 #ifndef GRIDTESTCLASS_H
 #define	GRIDTESTCLASS_H
-
+#ifndef TEST_GRID_X
+#define TEST_GRID_X 20
+#define TEST_GRID_Y 20
+#endif
 #include <cppunit/extensions/HelperMacros.h>
 #include "../Grid.h"
 #include "../Tile.h"
 #include "../IGridTraveller.h"
 #include "../Exceptions.h"
+#include "mocks.h"
 using namespace isgp;
 namespace isgp_test{
 	class gridTestClass : public CPPUNIT_NS::TestFixture {
