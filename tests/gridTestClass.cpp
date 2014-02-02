@@ -55,10 +55,7 @@ void gridTestClass::testGrid() {
 		CPPUNIT_ASSERT("this code should not be reached because of an exception" == false);
 	}catch (GridToLargeException arr){}
 	
-	CPPUNIT_ASSERT(g->getSize()->GetHeight() == height);
-	CPPUNIT_ASSERT(g->getSize()->GetWidth() == width);
-	
-	// what to do with 2 negatives
+	// what to do with 2 negatives, this creates an overflow in how many tiles there are
 	width = -10;
 	height = -13;
 	

@@ -7,15 +7,29 @@ namespace isgp{
 	unsigned Grid::getTileIndex(unsigned x, unsigned y){
 		return x + y * _size->GetWidth();
 	}
-	void Grid::init(unsigned width, unsigned height){
-		_size = new Size(width, height);
-		_tilesLength = (unsigned)(width*height);
-		if(_tilesLength > MAX_TILES){
-			throw GridToLargeException("The max limit of tiles for a grid is set to:" + 
+	void Grid::gaurdInit(unsigned width, unsigned height){
+		GridToLargeException exception = GridToLargeException(
+				"The max limit of tiles for a grid is set to:" + 
 					StrConverter::intToString(MAX_TILES) +
 					". To change this number define the macro "
-					"MAX_TILES before including the header file Grid.h");
+					"MAX_TILES before including the header file Grid.h -- "
+				"width: " + StrConverter::intToString(width) +
+				", height: "  + StrConverter::intToString(height)
+				, width, height);
+		if(width > MAX_TILES){
+			throw exception;
 		}
+		if(height > MAX_TILES){
+			throw exception;
+		}
+		if(_tilesLength > MAX_TILES){
+			throw exception;
+		}		
+	}
+	void Grid::init(unsigned width, unsigned height){
+		_tilesLength = (unsigned)(width*height);
+		gaurdInit(width, height);
+		_size = new Size(width, height);
 		_tiles = new vector<Tile*>();
 		for(unsigned x = 0; x < width; x++){
 			for(unsigned y = 0; y < height; y++){

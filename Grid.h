@@ -45,7 +45,14 @@ namespace isgp {
 		 * functionpointer has to be called
 		 * */
 		void traverse(unsigned x, unsigned y, IGridTraveller* travellar);
-
+		
+		/**
+		 * A gaurd for the init function so It won't take etherinity to init the grid but
+		 * just throw an GridToLarge exception
+         * @param width
+         * @param height
+         */
+		void gaurdInit(unsigned width, unsigned height);
 		/**
 		 * comman code for both contructors
 		 */
