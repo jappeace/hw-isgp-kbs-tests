@@ -40,4 +40,12 @@ namespace isgp{
 	Tile* Tile::GetTop() const {
 		return _top;
 	}
+
+    void Tile::SetPosition(Point* _position) {
+    	this->_position = _position;
+    }
+
+    Point* Tile::GetPosition() const {
+    	return _position;
+    }
 }

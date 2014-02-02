@@ -15,6 +15,7 @@
 #include "IGridTraveller.h"
 #include <iostream>
 #include "StrConverter.h"
+#include <stdexcept>
 using namespace std;
 namespace isgp {
 	/**

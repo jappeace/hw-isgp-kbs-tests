@@ -1,5 +1,5 @@
 #include "Grid.h"
-
+using namespace std;
 namespace isgp{
 	void Grid::traverse(unsigned x, unsigned y, IGridTraveller* traveller){
 		traveller->receiveTile(getTileAt(x, y), new Point(x, y));
@@ -11,53 +11,55 @@ namespace isgp{
 		_size = new Size(width, height);
 		_tilesLength = (unsigned)(width*height);
 		_tiles = new vector<Tile*>();
+		_tiles->assign(_tilesLength, new Tile(0,0));
 		
-		// initilize tiles
-		for(int x = 0; x < height; x++){
-			for(int y = 0; y < width ; y++){
-				_tiles->assign(getTileIndex(x, y), new Tile(x, y));
-			}
-		}
-		std::cout << std::endl << "nr: " << StrConverter::intToString(_tiles->size()) << std::endl;
 		// bind tiles to each other
-		for(unsigned x = 0; x < height; x++){
-			for(unsigned y = 0; y < width; y++){
-				std::cout << "binding" 
-						<< " x:" << StrConverter::intToString(x) 
-						<< " y:" << StrConverter::intToString(y) 
-						<< std::endl;
-				if(y < height -2 ){
-					_tiles->at(getTileIndex(x, y))->SetTop(
-						_tiles->at(
-							getTileIndex(x,y +1)
-						)
-					);
-				}
-				
-				if(y != 0){
-					_tiles->at(getTileIndex(x, y))->SetBottom(
-						_tiles->at(
-							getTileIndex(x, y -1)
-						)
-					);
-				}
-				
-				if(x < width -2){
-					_tiles->at(getTileIndex(x, y))->SetRight(
-						_tiles->at(
-							getTileIndex(x + 1, y)
-						)
-					);
-				}
+		for(unsigned x = 0; x < width; x++){
+			for(unsigned y = 0; y < height; y++){
+				try
+				{
+					_tiles->at(getTileIndex(x, y))->SetPosition(new Point(x, y));
+					if(y < height -2 ){
+						_tiles->at(getTileIndex(x, y))->SetTop(
+							_tiles->at(
+								getTileIndex(x,y +1)
+							)
+						);
+					}
+
+					if(y != 0){
+						_tiles->at(getTileIndex(x, y))->SetBottom(
+							_tiles->at(
+								getTileIndex(x, y -1)
+							)
+						);
+					}
+
+					if(x < width -2){
+						_tiles->at(getTileIndex(x, y))->SetRight(
+							_tiles->at(
+								getTileIndex(x + 1, y)
+							)
+						);
+					}
+
+					if(x != 0){
+						_tiles->at(getTileIndex(x, y))->SetLeft(
+							_tiles->at(
+								getTileIndex(x - 1, y)
+							)
+						);
+					}
+				}catch(const out_of_range& oor){
 					
-				if(x != 0){
-					_tiles->at(getTileIndex(x, y))->SetLeft(
-						_tiles->at(
-							getTileIndex(x - 1, y)
-						)
-					);
+					// the default exception is just crap
+					cout << "binding failed at point:" 
+							<< " x:" << StrConverter::intToString(x) 
+							<< " y:" << StrConverter::intToString(y) 
+							<< endl << "message: "
+							<< oor.what()
+							<< endl;					
 				}
-				
 			}
 		}
 	}
