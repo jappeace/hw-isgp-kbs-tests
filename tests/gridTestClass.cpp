@@ -42,7 +42,7 @@ void gridTestClass::testGrid() {
 	// what to do with a negative
 	width = -10;
 	height = 13;
-	Grid* g = new Grid(width, height);
+	g = new Grid(width, height);
 	
 	CPPUNIT_ASSERT(g->getSize()->GetHeight() == height);
 	CPPUNIT_ASSERT(g->getSize()->GetWidth() == width);
@@ -50,7 +50,7 @@ void gridTestClass::testGrid() {
 	// what to do with 2 negatives
 	width = -10;
 	height = -13;
-	Grid* g = new Grid(width, height);
+	g = new Grid(width, height);
 	
 	CPPUNIT_ASSERT(g->getSize()->GetHeight() == height);
 	CPPUNIT_ASSERT(g->getSize()->GetWidth() == width);
