@@ -21,6 +21,7 @@
 #include <iostream>
 #include "StrConverter.h"
 #include <stdexcept>
+#include "Exceptions.h"
 using namespace std;
 namespace isgp {
 	/**

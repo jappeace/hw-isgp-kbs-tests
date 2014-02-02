@@ -39,8 +39,8 @@ void gridTestClass::tearDown() {
 
 void gridTestClass::testGrid() {
 	// test uneven grids
-	int width = 10;
-	int height = 13;
+	unsigned width = 10;
+	unsigned height = 13;
 	Grid* g = new Grid(width, height);
 	CPPUNIT_ASSERT(g->getSize()->GetHeight() == height);
 	CPPUNIT_ASSERT(g->getSize()->GetWidth() == width);
@@ -53,7 +53,7 @@ void gridTestClass::testGrid() {
 	try{
 		g = new Grid(width, height);
 		CPPUNIT_ASSERT("this code should not be reached because of an exception" == false);
-	}catch (char const* arr){}
+	}catch (GridToLargeException arr){}
 	
 	CPPUNIT_ASSERT(g->getSize()->GetHeight() == height);
 	CPPUNIT_ASSERT(g->getSize()->GetWidth() == width);
@@ -66,7 +66,7 @@ void gridTestClass::testGrid() {
 	try{
 		g = new Grid(width, height);
 		CPPUNIT_ASSERT("this code should not be reached because of an exception" == false);
-	}catch (char const* arr){}
+	}catch (GridToLargeException arr){}
 	
 }
 

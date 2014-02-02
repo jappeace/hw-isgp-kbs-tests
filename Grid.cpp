@@ -11,8 +11,10 @@ namespace isgp{
 		_size = new Size(width, height);
 		_tilesLength = (unsigned)(width*height);
 		if(_tilesLength > MAX_TILES){
-			throw "The max limit of tiles for a grid is set to:" + StrConverter::intToString(MAX_TILES) +
-					". To change this number define the macro MAX_TILES before including the header file Grid.h";
+			throw GridToLargeException("The max limit of tiles for a grid is set to:" + 
+					StrConverter::intToString(MAX_TILES) +
+					". To change this number define the macro "
+					"MAX_TILES before including the header file Grid.h");
 		}
 		_tiles = new vector<Tile*>();
 		for(unsigned x = 0; x < width; x++){

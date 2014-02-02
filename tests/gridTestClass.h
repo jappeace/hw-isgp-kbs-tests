@@ -12,6 +12,7 @@
 #include "../Grid.h"
 #include "../Tile.h"
 #include "../IGridTraveller.h"
+#include "../Exceptions.h"
 using namespace isgp;
 class gridTestClass : public CPPUNIT_NS::TestFixture {
 	
