@@ -48,7 +48,12 @@ void gridTestClass::testGrid() {
 	// what to do with a negative
 	width = -10;
 	height = 13;
-	g = new Grid(width, height);
+	
+	// negatives degrade to big numbers, so an exception is trhown
+	try{
+		g = new Grid(width, height);
+		CPPUNIT_ASSERT("this code should not be reached because of an exception" == false);
+	}catch (char const* arr){}
 	
 	CPPUNIT_ASSERT(g->getSize()->GetHeight() == height);
 	CPPUNIT_ASSERT(g->getSize()->GetWidth() == width);
@@ -56,10 +61,12 @@ void gridTestClass::testGrid() {
 	// what to do with 2 negatives
 	width = -10;
 	height = -13;
-	g = new Grid(width, height);
 	
-	CPPUNIT_ASSERT(g->getSize()->GetHeight() == height);
-	CPPUNIT_ASSERT(g->getSize()->GetWidth() == width);
+	// even bigger numbers... and again an exception is thrown
+	try{
+		g = new Grid(width, height);
+		CPPUNIT_ASSERT("this code should not be reached because of an exception" == false);
+	}catch (char const* arr){}
 	
 }
 

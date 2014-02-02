@@ -10,15 +10,22 @@ namespace isgp{
 	void Grid::init(unsigned width, unsigned height){
 		_size = new Size(width, height);
 		_tilesLength = (unsigned)(width*height);
+		if(_tilesLength > MAX_TILES){
+			throw "The max limit of tiles for a grid is set to:" + StrConverter::intToString(MAX_TILES) +
+					". To change this number define the macro MAX_TILES before including the header file Grid.h";
+		}
 		_tiles = new vector<Tile*>();
-		_tiles->assign(_tilesLength, new Tile(0,0));
+		for(unsigned x = 0; x < width; x++){
+			for(unsigned y = 0; y < height; y++){
+				_tiles->push_back(new Tile(x,y));
+			}
+		}
 		
 		// bind tiles to each other
 		for(unsigned x = 0; x < width; x++){
 			for(unsigned y = 0; y < height; y++){
 				try
 				{
-					_tiles->at(getTileIndex(x, y))->SetPosition(new Point(x, y));
 					if(y < height -2 ){
 						_tiles->at(getTileIndex(x, y))->SetTop(
 							_tiles->at(

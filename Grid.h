@@ -8,6 +8,11 @@
 #ifndef GRID_H
 #define	GRID_H
 
+#ifndef MAX_TILES
+	// unit test started to fail when the number got to high on construction.
+	#define MAX_TILES 5000
+#endif
+
 #include <vector>
 #include "Tile.h"
 #include "Size.h"
