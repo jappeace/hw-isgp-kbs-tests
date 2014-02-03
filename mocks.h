@@ -7,9 +7,9 @@
 
 #ifndef MOCKS_H
 #define	MOCKS_H
-#include "../IGridTraveller.h"
+#include "../prototype/IGridTraveller.h"
 using namespace isgp;
-namespace isgp_test{
+namespace tests{
 	class GridTravellerMock : public IGridTraveller{
 	public:
 		int nrCalled;

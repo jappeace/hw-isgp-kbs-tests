@@ -5,58 +5,62 @@
  * Created on Feb 1, 2014, 12:43:34 PM
  */
 
-#include "gridTestClass.h"
+#ifndef TEST_GRID_X
+#define TEST_GRID_X 20
+#define TEST_GRID_Y 20
+#endif
+#include "../prototype/Grid.h"
+#include "../prototype/Tile.h"
+#include "../prototype/IGridTraveller.h"
+#include "../prototype/Exceptions.h"
+#include "mocks.h"
+#include "CppUnitTest.h"
+using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 using namespace isgp;
-namespace isgp_test {
-	CPPUNIT_TEST_SUITE_REGISTRATION(gridTestClass);
+namespace tests {
 
-	gridTestClass::gridTestClass() {
-	}
-
-	gridTestClass::~gridTestClass() {
-	}
-
-	void gridTestClass::testTile(int x, int y) {
+	TEST_CLASS(GridTestClass)
+	{
+	private:
+		Grid* test_grid;
+	public:
+	void testTile(int x, int y) {
 		Tile* result = test_grid->getTileAt(x, y);
-		CPPUNIT_ASSERT(result != NULL);
+		Assert::IsTrue(result != NULL);
 
-
-		CPPUNIT_ASSERT(result->GetBottom() == test_grid->getTileAt(x, y - 1));
-		CPPUNIT_ASSERT(result->GetLeft() == test_grid->getTileAt(x - 1, y));
-		CPPUNIT_ASSERT(result->GetTop() == test_grid->getTileAt(x, y + 1));
-		CPPUNIT_ASSERT(result->GetRight() == test_grid->getTileAt(x + 1, y));
+		Assert::IsTrue(result->GetBottom() == test_grid->getTileAt(x, y - 1));
+		Assert::IsTrue(result->GetLeft() == test_grid->getTileAt(x - 1, y));
+		Assert::IsTrue(result->GetTop() == test_grid->getTileAt(x, y + 1));
+		Assert::IsTrue(result->GetRight() == test_grid->getTileAt(x + 1, y));
 
 		// the debuger shows somtimes that the pointers are the same, which should not *ever* happen
 		// in a grid, these cases test for this behavior
-		CPPUNIT_ASSERT(result->GetBottom() != result);
-		CPPUNIT_ASSERT(result->GetLeft() != result);
-		CPPUNIT_ASSERT(result->GetTop() != result);
-		CPPUNIT_ASSERT(result->GetRight() != result);
+		Assert::IsTrue(result->GetBottom() != result);
+		Assert::IsTrue(result->GetLeft() != result);
+		Assert::IsTrue(result->GetTop() != result);
+		Assert::IsTrue(result->GetRight() != result);
 
 		// making sure the tiles are on proper locations
-		CPPUNIT_ASSERT(*result->GetPosition() == *new Point(x, y));
-		CPPUNIT_ASSERT(*result->GetBottom()->GetPosition() == *new Point(x, y - 1));
-		CPPUNIT_ASSERT(*result->GetLeft()->GetPosition() == *new Point(x - 1, y));
-		CPPUNIT_ASSERT(*result->GetTop()->GetPosition() == *new Point(x, y + 1));
-		CPPUNIT_ASSERT(*result->GetRight()->GetPosition() == *new Point(x + 1, y));
+		Assert::IsTrue(*result->GetPosition() == *new Point(x, y));
+		Assert::IsTrue(*result->GetBottom()->GetPosition() == *new Point(x, y - 1));
+		Assert::IsTrue(*result->GetLeft()->GetPosition() == *new Point(x - 1, y));
+		Assert::IsTrue(*result->GetTop()->GetPosition() == *new Point(x, y + 1));
+		Assert::IsTrue(*result->GetRight()->GetPosition() == *new Point(x + 1, y));
 
 
 	}
 
-	void gridTestClass::setUp() {
+	TEST_METHOD_INITIALIZE(SetUp){
 		test_grid = new Grid(TEST_GRID_X, TEST_GRID_Y);
 	}
 
-	void gridTestClass::tearDown() {
-	}
-
-	void gridTestClass::testGrid() {
+	TEST_METHOD(testGrid) {
 		// test uneven grids
 		unsigned width = 10;
 		unsigned height = 13;
 		Grid* g = new Grid(width, height);
-		CPPUNIT_ASSERT(g->getSize()->GetHeight() == height);
-		CPPUNIT_ASSERT(g->getSize()->GetWidth() == width);
+		Assert::IsTrue(g->getSize()->GetHeight() == height);
+		Assert::IsTrue(g->getSize()->GetWidth() == width);
 
 		// what to do with a negative
 		width = -10;
@@ -65,7 +69,7 @@ namespace isgp_test {
 		// negatives degrade to big numbers, so an exception is trhown
 		try {
 			g = new Grid(width, height);
-			CPPUNIT_ASSERT("this code should not be reached because of an exception" == false);
+			Assert::IsTrue("this code should not be reached because of an exception" == false);
 		} catch (GridToLargeException arr) {
 		}
 
@@ -76,40 +80,41 @@ namespace isgp_test {
 		// even bigger numbers... and again an exception is thrown
 		try {
 			g = new Grid(width, height);
-			CPPUNIT_ASSERT("this code should not be reached because of an exception" == false);
+			Assert::IsTrue("this code should not be reached because of an exception" == false);
 		} catch (GridToLargeException arr) {
 		}
 
 	}
 
-	void gridTestClass::testGetTileAt_XY() {
+	TEST_METHOD(testGetTileAt_XY) {
 		int x = 7;
 		int y = 4;
 		testTile(x, y);
 	}
 
-	void gridTestClass::testGetTileAtPoint() {
+	TEST_METHOD(testGetTileAtPoint) {
 		Point* p = new Point(15, 12);
 		testTile(p->GetX(), p->GetY());
 	}
 
-	void gridTestClass::testTraverseCollumn() {
+	TEST_METHOD(testTraverseCollumn) {
 		int x = 5;
 		GridTravellerMock* travellar =  new GridTravellerMock();
 		test_grid->traverseCollumn(x, travellar);
-		CPPUNIT_ASSERT(travellar->nrCalled == TEST_GRID_Y);
+		Assert::IsTrue(travellar->nrCalled == TEST_GRID_Y);
 	}
 
-	void gridTestClass::testTraverseRow() {
+	TEST_METHOD(testTraverseRow) {
 		int y = 8;
 		GridTravellerMock* travellar =  new GridTravellerMock();
 		test_grid->traverseRow(y, travellar);
-		CPPUNIT_ASSERT(travellar->nrCalled == TEST_GRID_X);
+		Assert::IsTrue(travellar->nrCalled == TEST_GRID_X);
 	}
 
-	void gridTestClass::testTraverseTiles() {
+	TEST_METHOD(testTraverseTiles) {
 		GridTravellerMock* travellar =  new GridTravellerMock();
 		test_grid->traverseTiles(travellar);
-		CPPUNIT_ASSERT(travellar->nrCalled == TEST_GRID_X * TEST_GRID_Y);
+		Assert::IsTrue(travellar->nrCalled == TEST_GRID_X * TEST_GRID_Y);
+	}
 	}
 }
