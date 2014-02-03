@@ -116,5 +116,5 @@ namespace tests {
 		test_grid->traverseTiles(travellar);
 		Assert::IsTrue(travellar->nrCalled == TEST_GRID_X * TEST_GRID_Y);
 	}
-	}
+	};
 }
